@@ -57,6 +57,7 @@ const initialState: {
     emuVersion: string,
     worker: boolean,
     jspi: boolean,
+    mcpServerPort: number,
     offscreenCanvas: boolean,
     backend: Backend,
     backendLocked: boolean,
@@ -105,6 +106,7 @@ const initialState: {
     config: {},
     worker: lStorage.getItem("worker") !== "false",
     jspi: lStorage.getItem("jspi") === "true" && typeof (WebAssembly as any).promising === "function",
+    mcpServerPort: Math.max(0, Number.parseInt(lStorage.getItem("mcpServerPort") ?? "0") || 0),
     backend: (lStorage.getItem("backend") ?? "dosbox") as Backend,
     backendLocked: false,
     backendHardware: (lStorage.getItem("backendHardware") !== "false"),
@@ -271,6 +273,10 @@ export const dosSlice = createSlice({
                 s.jspi = a.payload;
             }
             lStorage.setItem("jspi", s.jspi ? "true" : "false");
+        },
+        mcpServerPort: (s, a: { payload: number }) => {
+            s.mcpServerPort = Math.max(0, a.payload);
+            lStorage.setItem("mcpServerPort", s.mcpServerPort + "");
         },
         dosBackend: (s, a: { payload: Backend }) => {
             s.backend = a.payload as Backend;
@@ -471,4 +477,3 @@ function initEmulatorsJs(pathPrefix: string, pathSuffix: string) {
         document.head.appendChild(script);
     });
 };
-

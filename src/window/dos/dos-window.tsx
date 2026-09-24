@@ -23,6 +23,7 @@ export function DosWindow(props: {
     const [ci, setCi] = useState<CommandInterface | null>(null);
     const worker = useSelector((state: State) => state.dos.worker);
     const jspi = useSelector((state: State) => state.dos.jspi);
+    const mcpServerPort = useSelector((state: State) => state.dos.mcpServerPort);
     const backend = useSelector((state: State) => state.dos.backend);
     const backendHardware = useSelector((state: State) => state.dos.backendHardware);
     const dosNoCursor = useSelector((state: State) => state.dos.noCursor);
@@ -122,12 +123,16 @@ export function DosWindow(props: {
                     nonSerializableStore.net = undefined;
                 }
 
+                const useMcpServer = backend === "dosboxX" && worker && mcpServerPort !== 0;
                 let backendName = "dosbox";
                 switch (backend) {
                     case "dosboxX":
                         backendName = "dosboxX";
                         if (jspi) {
                             backendName += "Jspi";
+                        }
+                        if (useMcpServer) {
+                            backendName += "Debug";
                         }
                         break;
                     default:
@@ -141,6 +146,7 @@ export function DosWindow(props: {
                     sockdrivePreload,
                     sockdriveOpfsRoot: nonSerializableStore.opfsRoot,
                     net: nonSerializableStore.net,
+                    ...(useMcpServer ? { mcpServerPort } : {}),
                 });
             })();
 
@@ -191,7 +197,7 @@ export function DosWindow(props: {
         } catch (e) {
             dispatch(dosSlice.actions.emuError((e as any).message));
         }
-    }, [worker, backend, useOffscreenCanvas, sockdrivePreload, startIpxServer, connectIpxAddress]);
+    }, [worker, backend, jspi, mcpServerPort, useOffscreenCanvas, sockdrivePreload, startIpxServer, connectIpxAddress]);
 
     return <div class="flex flex-col flex-grow h-full overflow-hidden">
         <div class="bg-black h-full flex-grow overflow-hidden relative">

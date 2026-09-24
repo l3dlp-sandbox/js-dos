@@ -106,6 +106,26 @@ export function JspiCheckbox() {
     />;
 }
 
+export function DebugPortInput() {
+    const dispatch = useDispatch();
+    const mcpServerPort = useSelector((state: State) => state.dos.mcpServerPort);
+    const backend = useSelector((state: State) => state.dos.backend);
+    const worker = useSelector((state: State) => state.dos.worker);
+    if (backend !== "dosboxX") {
+        return null;
+    }
+
+    return <div class="flex flex-col mt-4 gap-2">
+        <div>Debug Port</div>
+        <input type="number" min="0" class="input input-bordered" value={mcpServerPort || ""}
+            disabled={!worker}
+            onChange={(e) => {
+                const value = Number.parseInt((e.target as HTMLInputElement).value);
+                dispatch(dosSlice.actions.mcpServerPort(Number.isNaN(value) ? 0 : Math.max(0, value)));
+            }} />
+    </div>;
+}
+
 export function OffscreenCanvasCheckbox() {
     const t = useT();
     const dispatch = useDispatch();

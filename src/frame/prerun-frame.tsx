@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Editor, HardwareCheckbox, IpxServerCheckbox, JspiCheckbox, MirroredControls, MobileControls,
+import { DebugPortInput, Editor, HardwareCheckbox, IpxServerCheckbox, JspiCheckbox, MirroredControls, MobileControls,
     MouseCapture,
     OffscreenCanvasCheckbox,
     SystemCursor,
@@ -24,6 +24,7 @@ export function PreRunFrame(props: {}) {
         <BackendSelect multiline={true} />
         <WorkerCheckbox />
         <JspiCheckbox />
+        <DebugPortInput />
         <OffscreenCanvasCheckbox />
         <div class="h-4" />
         <IpxServerCheckbox />

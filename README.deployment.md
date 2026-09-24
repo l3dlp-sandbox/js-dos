@@ -44,7 +44,32 @@ rm -rf /tmp/$VERSION
 
 Clear the CDN cache (br.cdn.js-dos.com) in dashboard, pattern:
 ```
-/js-dos/latest,/js-dos/latest/*
+/js-dos/latest/js-dos.js.ea
+/js-dos/latest/js-dos.js.map
+/js-dos/latest/js-dos.css
+/js-dos/latest/emulators/emulators.js.ea
+/js-dos/latest/emulators/emulators.js.map
+/js-dos/latest/emulators/file-explorer.css.ea
+/js-dos/latest/emulators/file-explorer.js.ea
+/js-dos/latest/emulators/fileexplorer_actions.woff
+/js-dos/latest/emulators/fileexplorer_sprites.png
+/js-dos/latest/emulators/wdosbox-x-jspi.js.ea
+/js-dos/latest/emulators/wdosbox-x-jspi.js.symbols
+/js-dos/latest/emulators/wdosbox-x-jspi.wasm.ea
+/js-dos/latest/emulators/wdosbox-x-dbg.js.ea
+/js-dos/latest/emulators/wdosbox-x-dbg.js.symbols
+/js-dos/latest/emulators/wdosbox-x-dbg.wasm.ea
+/js-dos/latest/emulators/wdosbox-x.js.ea
+/js-dos/latest/emulators/wdosbox-x.js.symbols
+/js-dos/latest/emulators/wdosbox-x.wasm.ea
+/js-dos/latest/emulators/wdosbox.js.ea
+/js-dos/latest/emulators/wdosbox.js.symbols
+/js-dos/latest/emulators/wdosbox.wasm.ea
+/js-dos/latest/emulators/webrtcnet.mjs.ea
+/js-dos/latest/emulators/webrtcnet.wasm.ea
+/js-dos/latest/emulators/wlibzip.js.ea
+/js-dos/latest/emulators/wlibzip.js.symbols
+/js-dos/latest/emulators/wlibzip.wasm.ea
 ```
 
 ### Deploy nigthly
